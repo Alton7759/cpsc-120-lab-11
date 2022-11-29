@@ -1,4 +1,14 @@
-// TODO add a header
+// Wilfredo Rodas
+// CPSC 120-01
+// 2022-11-28
+// rodaswilfredo24@csu.fullerton.edu
+// @rodasw24
+//
+// Lab 11-01
+// Partners: @AHan003, @alton7759
+//
+// Object-oriented State class.
+//
 
 #include "states.h"
 
@@ -35,13 +45,18 @@ State::State(const std::string& name, int population, double land_area) {
   // Since this is a constructor, it should use a member initialization list
   // to initialize data members.
   // When you are done, delete this comment.
+  const std::string& name;
+  const State;
+  int population = 0;
+  double land_area = 0.0;
 }
 
 State::State() {
-  // TODO: complete the definition of this constructor.
   // Since this is a constructor, it should use a member initialization list
   // to initialize data members.
   // When you are done, delete this comment.
+  const
+  int population_
 }
 
 const std::string& State::Name() const {

@@ -40,66 +40,47 @@ std::vector<std::vector<std::string>> ReadCSV(const std::string& csv_filename,
   return table;
 }
 
-State::State(const std::string& name, int population, double land_area) {
-  // TODO: complete the definition of this constructor.
-  // Since this is a constructor, it should use a member initialization list
-  // to initialize data members.
-  // When you are done, delete this comment.
-  const std::string& name;
-  const State;
-  int population = 0;
-  double land_area = 0.0;
-}
+State::State(const std::string& name, int population, double land_area)
 
-State::State() {
-  // Since this is a constructor, it should use a member initialization list
-  // to initialize data members.
-  // When you are done, delete this comment.
-  const
-  int population_
-}
+    : name_(name), population_(population), land_area_(land_area) {}
 
-const std::string& State::Name() const {
-  // TODO: write statements to implement this function, and delete this comment
-  // Hint: This is a simple accessor function. The function definition only
-  // needs to be a single statement.
-  return ""; // TODO: replace this return statement with one that actually works
-}
+State::State() : population_(), land_area_() {}
 
-int State::Population() const {
-  // TODO: write statements to implement this function, and delete this comment
-  // Hint: This is a simple accessor function. The function definition only
-  // needs to be a single statement.
-  return 0; // TODO: replace this return statement with one that actually works
-}
+const std::string& State::Name() const { return name_; }
 
-double State::LandArea() const {
-  // TODO: write statements to implement this function, and delete this comment
-  // Hint: This is a simple accessor function. The function definition only
-  // needs to be a single statement.
-  return 0.0; // TODO: replace this return statement with one that actually works
-}
+int State::Population() const { return population_; }
+
+double State::LandArea() const { return land_area_; }
 
 double State::PopulationDensity() const {
-  // TODO: write statements to implement this function, and delete this comment
-  // Hint: Population density is the population divided by the land area.
-  return 0.0; // TODO: replace this return statement with one that actually works
+  double density = population_ / land_area_;
+
+  return density;
 }
 
 std::vector<State> ReadStates(const std::string& csv_filename) {
-  // TODO: write statements to implement this function, and delete this comment
-  // Hint: this function should:
-  //  - create an empty vector of States
-  //  - call ReadCSV to create a 2D vector of strings
-  //  - loop through each row of the CSV
-  //    - skip the first row that contains a header
-  //    - for all other rows:
-  //      - get the name (as a string) from column 0
-  //      - get the population (as a string) from column 2
-  //        convert the string to an int with std::stoi
-  //      - get the land area (as a string) from column 47
-  //        convert the string to a double with std::stod
-  //      - create a State object with the name, population, land area
-  //      - add the State to your vector with push_back
-  return std::vector<State>(); // TODO: replace this return statement with one that actually works
+  std::vector<std::vector<std::string>> contensts = ReadCSV(csv_filename, 48);
+  std::vector<State> states;
+  for (int rowt = 0; rowt < contensts.size(); rowt++) {
+    std::vector<std::string> row = contensts.at(rowt);
+    if (rowt == 0) {
+      continue;
+    }
+    std::string name;
+    int population = 0;
+    double land_area = 0.0;
+    for (int column = 0; column < row.size(); column++) {
+      if (column == 0) {
+        name = row.at(column);
+      } else if (column == 2) {
+        population = std::stoi(row.at(column));
+      } else if (column == 47) {
+        land_area = std::stod(row.at(column));
+      }
+    }
+    State t(name, population, land_area);
+    states.push_back(t);
+  }
+
+  return states;
 }

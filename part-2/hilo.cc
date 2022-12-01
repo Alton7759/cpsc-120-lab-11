@@ -1,61 +1,41 @@
-// TODO add a header
-
+// Wilfredo Rodas
+// CPSC 120-01
+// 2022-11-28
+// rodaswilfredo24@csu.fullerton.edu
+// @rodasw24
+//
+// Lab 11-02
+// Partners: @AHan003, @alton7759
+//
+// Object-oriented State class.
+//
 #include "hilo.h"
 
 #include "rng.h"
 
-GameState::GameState(int secret) {
-  // TODO: complete the definition of this constructor.
-  // Since this is a constructor, it should use a member initialization list
-  // to initialize data members.
-  // When you are done, delete this comment.
-}
+GameState::GameState(int secret)
 
-int GameState::Secret() const {
-  // TODO: complete the definition of this constructor.
-  // Since this is a constructor, it should use a member initialization list
-  // to initialize data members.
-  // When you are done, delete this comment.
-}
+    : secret_(secret), guesses_left_(4) {}
 
-int GameState::GuessesLeft() const {
-  // TODO: write statements to implement this function, and delete this comment
-  // Hint: This is a simple accessor function. The function definition only
-  // needs to be a single statement.
-  return 0; // TODO: replace this return statement with one that actually works
-}
+int GameState::Secret() const { return secret_; }
 
-bool GameState::GuessCorrect(int guess) const {
-  // TODO: write statements to implement this function, and delete this comment
-  // Hint: Use an if statement.
-  return false; // TODO: replace this return statement with one that actually works
-}
+int GameState::GuessesLeft() const { return guesses_left_; }
 
-bool GameState::GuessTooBig(int guess) const {
-  // TODO: write statements to implement this function, and delete this comment
-  // Hint: Use an if statement.
-  return false; // TODO: replace this return statement with one that actually works
-}
+bool GameState::GuessCorrect(int guess) const { return guess == secret_; }
 
-bool GameState::GuessTooSmall(int guess) const {
-  // TODO: write statements to implement this function, and delete this comment
-  // Hint: Use an if statement.
-  return false; // TODO: replace this return statement with one that actually works
-}
+bool GameState::GuessTooBig(int guess) const { return guess > secret_; }
 
-void GameState::CountGuess() {
-  // TODO: write statements to implement this function, and delete this comment
-}
+bool GameState::GuessTooSmall(int guess) const { return guess < secret_; }
 
-bool GameState::GameOver() const {
-  // TODO: write statements to implement this function, and delete this comment
-  return false; // TODO: replace this return statement with one that actually works
-}
+void GameState::CountGuess() { guesses_left_ = guesses_left_ - 1; }
+
+bool GameState::GameOver() const { return guesses_left_ == 0; }
 
 int RandomSecretNumber() {
-  // TODO: write statements to implement this function, and delete this comment
-  // Hint: first seed the random number generator
-  // then generate a random number between 1 and 10
-  // finally return that random number
-  return 0; // TODO: replace this return statement with one that actually works
+  double minimum_random_number = 1.0;
+  double maximum_random_number = 10.0;
+  RandomNumberGenerator my_random_number_generator{minimum_random_number,
+                                                   maximum_random_number};
+  int random_number = int(my_random_number_generator.next());
+  return random_number;
 }
